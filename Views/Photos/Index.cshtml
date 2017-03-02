@@ -1,0 +1,74 @@
+﻿@*instantiates the model*@ 
+@model IEnumerable<mvc_demo.Models.Photo>
+
+@{
+    Layout = null;
+}
+@*the @ called and html helper*@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @*actionlink is an a anchor tag, controllers match views, actions match controller actions*@
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @*DisplayNameFor shows just the name of the db object*@
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhotoFile)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageMimeType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th></th>
+        </tr>
+    @*foreach loop to get info*@
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhotoFile)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImageMimeType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>@*links*@
+                @Html.ActionLink("Edit", "Edit", new { id=item.PhotoID }) |
+                @Html.ActionLink("Details", "Details", new { id=item.PhotoID }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.PhotoID })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>
